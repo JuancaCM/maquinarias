@@ -1,0 +1,81 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Registro de actividades</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" method="post" #f="ngForm" (ngSubmit)="getJournals(f)">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="fInicial" class="form-control" placeholder="Fecha inicial" [(ngModel)]="modelIni" ngbDatepicker #fIni="ngbDatepicker" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="fIni.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="fFinal" class="form-control" placeholder="Fecha final" [(ngModel)]="modelFin" ngbDatepicker #fFin="ngbDatepicker" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="fFin.toggle()" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <select name="vehiculo" class="form-control" #fVehicle="">
+            <option value="*" selected>Todos</option>
+            <option *ngFor="let vehicle of vehicleList" value="{{ vehicle._id }}">{{ vehicle.type }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar <i class="icon-magnifier"></i></button>
+      </form>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+<!--         <div>
+          <button class="btn btn-primary pull-right toolbar-btn"><i class="fa fa-file-excel-o"></i> Exportar</button>
+        </div> -->
+          <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead class="">
+              <tr>
+                <th>Fecha de Actividad</th>
+                <th>Nombre Vehiculo</th>
+                <th>Nombre Operario</th>
+                <th class="text-center">Hora Inicio</th>
+                <th class="text-center">Hora Termino</th>
+                <th class="text-center">Tiempo de actividad (HH/MM/SS)</th>
+                <th class="text-center">Distancia (km)</th>
+<!--                 <th class="text-center">Total Horas</th>
+                <th class="text-center">Nº Pausas</th>
+                <th class="text-center">Horas Pausas</th> -->
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let journal of journalList">
+                <td>{{ journal.date | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ journal.vehicle.vehicle }}</td>
+                <td>{{ journal.vehicle.driver.name }} {{journal.vehicle.driver.last_name }}</td>
+                <td class="text-center">{{ journal.start_time }}</td>
+                <td class="text-center">{{ journal.end_time }}</td>
+                <td class="text-center">{{ journal.duration }}</td>
+                <td class="text-center">{{ journal.distance }}</td>
+<!--                 <td></td>
+                <td></td>
+                <td></td> -->
+                <td><button class="btn btn-primary btn-block btn-sm" (click)="loadDetail(journal.identifier)">Ver <i class="fa fa-list"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

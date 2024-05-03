@@ -1,0 +1,57 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Detalle del usuario</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div>
+          <button class="btn btn-success toolbar-btn" (click)="backUserList()"><i class="icon-arrow-left"></i> Volver</button>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            <div class="form-group">
+              <label>Rut</label>
+              <input type="text" name="rut" [(ngModel)]="user.rut" class="form-control" placeholder="Ingrese el rut" required>
+            </div>
+            <div class="form-group">
+              <label>Nombres</label>
+              <input type="text" name="name" [(ngModel)]="user.name" class="form-control" placeholder="Ingrese los nombres" required>
+            </div>
+            <div class="form-group">
+              <label>Apellidos</label>
+              <input type="text" name="last_name" [(ngModel)]="user.last_name" class="form-control" placeholder="Ingrese los apellidos" required>
+            </div>
+            <div class="form-group">
+              <label>Correo electrónico</label>
+              <input type="email" name="email" [(ngModel)]="user.email" class="form-control" placeholder="Ingrese el correo electrónico" required>
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" name="password" [(ngModel)]="user.password" class="form-control" placeholder="Ingrese la contraseña" required>
+            </div>
+            <div class="form-group">
+              <label>Perfil</label>
+              <select class="form-control" name="type" [(ngModel)]="user.type" required>
+                <option value="" selected>Seleccione el perfil</option>
+                <option *ngFor="let type of userTypes" value="{{ type.id }}">{{ type.type }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado</label>
+              <select class="form-control" name="userActive" [(ngModel)]="user.active" required>
+                <option value="true" selected>Activo</option>
+                <option value="false">Inactivo</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-default pull-right" (click)="backUserList()">Cancelar</button>
+            <button *ngIf="!flag" type="submit" class="btn btn-success pull-right" (click)="addUser()">Añadir</button>
+            <button *ngIf="flag" type="submit" class="btn btn-success pull-right" (click)="editUser()">Modificar</button>
+          </form>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

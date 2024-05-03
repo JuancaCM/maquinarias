@@ -1,0 +1,84 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Resumen de la semana <br><span> {{ fInicio | date: 'dd/MM/yyyy' }} - {{ fFinal | date: 'dd/MM/yyyy' }}</span></h3>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-sm-6 col-lg-3" (click)="redirectToRoute('/vehicle')">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-truck bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ vehicles.length }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Vehiculos</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-clock-o bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ totalTime }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Horas trabajadas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-cogs bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ totalHectares | number: '.3'}}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Hectáreas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-tint bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ totalLiters | number:'.2' }} lts</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Combustible</div>
+        </div>
+      </div>
+    </div>
+  </div><!--/.row-->
+<!--   <div class="card">
+    <div class="card-body">
+      <div class="row">
+      </div>
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart"
+        [datasets]="mainChartData"
+        [labels]="mainChartLabels"
+        [options]="mainChartOptions"
+        [colors]="mainChartColours"
+        [legend]="mainChartLegend"
+        [chartType]="mainChartType"></canvas>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+          <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>Vehiculo</th>
+                <th>Operario</th>
+                <th class="text-center">Horas trabajadas</th>
+                <th class="text-center">Hectáreas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let vehicle of vehicles">
+                <td>{{ vehicle.vehicle }}</td>
+                <td>{{ vehicle.driver }}</td>
+                <td>{{ vehicle._id }}</td>
+                <td>{{ vehicle._id }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div> -->
+</div>

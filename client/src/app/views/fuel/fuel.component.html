@@ -1,0 +1,43 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Gestión de combustible</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+<!--         <div>
+          <button class="btn btn-primary pull-right toolbar-btn" (click)="exportFuel()" ><i class="fa fa-file-excel-o"></i> Exportar</button>
+        </div> -->
+        <table class="table table-responsive-sm table-hover table-outline mb-0">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Vehiculo Despachador</th>
+              <th>Despachador</th>
+              <th>Litros</th>
+              <th>Recepcionado por</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fuel of fuelList">
+              <td>{{ fuel.date | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ fuel.dispatcherVehicle }}</td>
+              <td>{{ fuel.dispatcher }}</td>
+              <td>{{ fuel.liters.$numberDecimal | number:'.2':'es' }}</td>
+              <td>{{ fuel.vehicle.vehicle }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <!--<div class="col-md-6">
+      <div class="card">
+      </div>
+    </div>-->
+  </div>
+</div>

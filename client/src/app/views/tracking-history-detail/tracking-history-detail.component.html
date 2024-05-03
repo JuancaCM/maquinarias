@@ -1,0 +1,159 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Detalle del registro</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary toolbar-btn" (click)="returnHistory()"><i class="icon-arrow-left"></i> Volver</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">Actividad del vehiculo</div>
+        <div class="card-body">
+          <agm-map [latitude]="firstLocation.latitude" [longitude]="firstLocation.longitude" [zoom]="17">
+            <agm-marker *ngFor="let coordinate of coordinates" [latitude]="coordinate.latitude" [longitude]="coordinate.longitude">
+              <agm-info-window>{{ coordinate.time }}</agm-info-window>
+            </agm-marker>
+            <agm-polyline [strokeColor]="'#009639'">
+              <agm-polyline-point *ngFor="let coordinate of coordinates" [latitude]="coordinate.latitude" [longitude]="coordinate.longitude">
+              </agm-polyline-point>
+            </agm-polyline>
+          </agm-map>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-clock-o bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ journal.duration }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Tiempo de Trabajo</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-clock-o bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div *ngIf="pausedTimeTotal == ''" class="h5 text-primary mb-0 pt-3">00:00</div>
+          <div *ngIf="pausedTimeTotal != ''" class="h5 text-primary mb-0 pt-3">{{ pausedTimeTotal }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Horas pausadas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-map-marker bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ totalHectares | number: '.3'}}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Hectáreas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-tint bg-primary p-4 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-primary mb-0 pt-3">{{ totalLiters | number:'.2' }} lts</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">Combustible</div>
+        </div>
+      </div>
+    </div>
+  </div><!--/.row-->
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">Información Jornada</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5">
+              <p>Fecha</p>
+            </div>
+            <div class="col-md-7">
+              <p>{{ journal.date | date: 'dd/MM/yyyy' }}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+              <p>Vehiculo</p>
+            </div>
+            <div class="col-md-7">
+              <p>{{ journal.vehicle.vehicle }}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+              <p>Patente</p>
+            </div>
+            <div class="col-md-7">
+              <p>{{ journal.vehicle.patent }}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+              <p>Operario</p>
+            </div>
+            <div class="col-md-7">
+              <p>{{journal.vehicle.driver.name}} {{journal.vehicle.driver.last_name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+              <p>Hora de inicio</p>
+            </div>
+            <div class="col-md-7">
+              <p>{{journal.start_time}} hrs</p>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-5">
+              <p>Hora de termino</p>
+            </div>
+            <div class="col-md-7">
+              <p *ngIf="journal.end_time == ''">-</p>
+              <p *ngIf="journal.end_time != ''">{{journal.end_time}} hrs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header">Registro de Pausas</div>
+        <div class="card-body">
+          <table class="table table-responsive-sm table-striped">
+            <thead>
+              <tr>
+                <th>Pausa</th>
+                <th class="text-center">Hora Inicio</th>
+                <th class="text-center">Hora Termino</th>
+                <th class="text-center">Total Horas</th>
+                <th>Motivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pause of pauses; let i = index">
+                <td class="text-center">{{i + 1}}</td>
+                <td class="text-center">{{pause.start_time}} hrs</td>
+                <td class="text-center">{{pause.end_time}} hrs</td>
+                <td class="text-center">{{pause.pausedTime}} hrs</td>
+                <td>{{pause.reason}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

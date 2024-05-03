@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Sebastian Ortega <sortega@thinkagro.cl>",
+  "license": "ISC",
+  "dependencies": {
+    "angular2-navigate-with-data": "^1.1.11",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongodb": "^6.5.0",
+    "mongoose": "^5.0.17"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

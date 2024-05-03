@@ -1,0 +1,46 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Gestión de dispositivos</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+          <div>
+            <button class="btn btn-success pull-right toolbar-btn" (click)="addDevice()">Añadir <i class="fa fa-plus"></i></button>
+          </div>
+          <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead>
+              <tr>
+                <th>Dispositivo</th>
+                <th>Modelo</th>
+                <th>Identificador</th>
+                <th>Número</th>
+<!--                 <th class="text-center">Asignado</th>
+                <th>Vehiculo</th> -->
+                <th class="text-center">Estado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let device of deviceList">
+                <td>{{ device.device }}</td>
+                <td>{{ device.model }}</td>
+                <td>{{ device.id }}</td>
+                <td>{{ device.number }}</td>
+<!--                 <td *ngIf="device.device != ''" class="text-center">Si</td>
+                <td *ngIf="device.device === ''" class="text-center">No</td>
+                <td></td> -->
+                <td *ngIf="device.active" class="text-center bg-active">Activo</td>
+                <td *ngIf="!device.active" class="text-center bg-inactive">Inactivo</td>
+                <td>
+                  <button class="btn btn-warning btn-block btn-sm" (click)="editDevice(device)">Editar <i class="fa fa-pencil"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

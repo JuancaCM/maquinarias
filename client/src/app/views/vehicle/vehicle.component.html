@@ -1,0 +1,54 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Gestión de vehiculos</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <!-- <div>
+          <button class="btn btn-success pull-right toolbar-btn" (click)="addVehicle()">Añadir <i class="fa fa-plus"></i></button>
+        </div> -->
+        <table class="table table-responsive-sm table-hover table-outline mb-0">
+          <thead class="">
+            <tr>
+              <th>Vehiculo</th>
+              <th>Patente</th>
+              <th>Tipo</th>
+              <th>Chofer</th>
+              <th>QR</th>
+              <!-- <th>Horas trabajadas</th>
+              <th>Horas paradas</th> -->
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vehicle of vehicleList">
+              <td>{{ vehicle.vehicle }}</td>
+              <td>{{ vehicle.patent }}</td>
+              <td>{{ vehicle.type }}</td>
+              <td>{{ vehicle.driver.name }} {{ vehicle.driver.last_name }}</td>
+              <td>
+                <button class="btn btn-primary btn-block btn-sm" (click)="verCodigoQR(vehicle)">
+                  Ver QR <i class="fa fa-qrcode"></i>
+                </button>
+                <div *ngIf="urlCodigoQR"> <!-- Mostrar solo si hay una URL del código QR -->
+                  <img [src]="urlCodigoQR" alt="Código QR">
+                </div>
+              </td>
+              <!-- <td></td>
+              <td></td> -->
+              <td *ngIf="vehicle.active" class="text-center bg-active">Activo</td>
+              <td *ngIf="!vehicle.active" class="text-center bg-inactive">Inactivo</td>
+              <td>
+                <button class="btn btn-warning btn-block btn-sm" (click)="editVehicle(vehicle)">Editar <i class="fa fa-pencil"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

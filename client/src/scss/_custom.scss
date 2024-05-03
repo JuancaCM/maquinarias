@@ -1,0 +1,84 @@
+// Here you can add other styles
+
+$primary_color: #009639;
+$seconday_color: #80bd01;
+
+.toolbar-btn {
+	border-radius: 0;
+}
+.btn-primary {
+	background-color: $primary_color;
+	border-color: $primary_color;
+}
+.btn-primary:hover {
+	background-color: $seconday_color;
+	border-color: $seconday_color;
+}
+.bg-primary {
+	background-color: $primary_color !important;
+}
+.text-primary {
+	color: $primary_color !important;
+}
+a {
+	color: $primary_color;
+}
+a:hover {
+	color: $seconday_color;
+	text-decoration: none;
+}
+.sidebar .nav-link:hover {
+	background-color: $primary_color;
+}
+/*.sidebar .nav-link.active .nav-icon {
+	color: $primary_color;
+}*/
+.card-header {
+	text-transform: uppercase;
+}
+agm-map {
+	/*height: 400px;*/
+	height: 50vh;
+}
+.bg-active {
+	background-color: green;
+	color: white;
+}
+.bg-inactive {
+	background-color: red;
+	color: white;
+}
+.thinkAgroLoginLogo {
+	width: 50%;
+	padding-bottom: 1.5em;
+}
+body {
+	background: url(../assets/img/background.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+.app-footer {
+/*	background: #009447;
+	color: #ffffff;*/
+	justify-content: center;
+}
+.app-footer a {
+	/*color: #ffffff;*/
+	font-weight: bold;
+}
+a.btn.btn-success {
+	color: #ffffff;
+}
+.simple-notification-wrapper {
+	width: 350px !important;
+}
+.simple-notification-wrapper.top {
+	top: 75px !important;
+}
+thead tr {
+	background-color: rgba(0, 0, 0, 0.075);
+}
+@media (min-width: 992px) {
+	.sidebar-minimized .sidebar .nav-item:hover > .nav-link {
+		background-color: $primary_color;
+	}
+}
